@@ -62,7 +62,10 @@ def format_team_name(team_name) -> str:
 
 
 def format_team_logo_src(team_logo) -> str:
-    team_logo = team_logo.find('img').attrs['src']
+    try:
+        team_logo = team_logo.find('img').attrs['src']
+    except:
+        team_logo = ""
     team_logo = team_logo.replace('getLogo/format/3/id', 'getLogo/format/2/id')
     team_logo = team_logo.replace('//', '')
     return team_logo

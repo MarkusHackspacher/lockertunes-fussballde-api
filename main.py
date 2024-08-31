@@ -42,22 +42,21 @@ def index():
     if request.method == 'POST':  
 
         url = request.form['url']
-        return redirect(url_for('second_page',  
- url=url))
+        return redirect(url_for('second_gui', url=url))
     return render_template('index.html')
 
-@app.route('/second_page', methods=['GET', 'POST'])
-def second_page():
+@app.route('/second_gui', methods=['GET', 'POST'])
+def second_gui():
     url = request.args.get('url')
     teams = get_teams(url)
     if request.method == 'POST':
         selected_team = request.form['team']
-        return redirect(url_for('third_page', url=url, selected_team=selected_team))
+        return redirect(url_for('third_gui', url=url, selected_team=selected_team))
 
-    return render_template('second.html', url=url, teams=teams)
+    return render_template('second_gui.html', url=url, teams=teams)
 
-@app.route('/third_page', methods=['GET', 'POST'])
-def third_page():
+@app.route('/third_gui', methods=['GET', 'POST'])
+def third_gui():
     url = request.args.get('url')
     selected_team = request.args.get('selected_team')
     if selected_team:
@@ -67,7 +66,7 @@ def third_page():
             matches_dict.append(match.to_dict())
         if request.method == 'POST': 
             return jsonify(matches_dict), 202
-        return render_template('third.html', matches=matches)
+        return render_template('third_gui.html', matches=matches, url=url)
     return "Keine Daten ausgewählt."
 
 if __name__ == '__main__':

@@ -4,8 +4,8 @@
     <title>Zweite Seite fussball.de-api</title>
 </head>
 <body>
-    <h1>fussballde-api </h1>
-    <p>Die eingegebene URL ist: {{ url }}</p>
+    <h1>fussball.de-api </h1>
+    <p><a href="{{ url }}">Fussball.de Ligaübersicht</a></p>
     <p>Die Mannschaften sind: {{ teams }}</p>
     <form method="POST">
         {% for team in teams %}

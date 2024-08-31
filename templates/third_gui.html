@@ -4,11 +4,12 @@
     <title>Dritte Seite fussball.de-api</title>
 </head>
 <body>
-    <h1>fussballde-api </h1>
+    <h1>fussball.de-api </h1>
     <form method="POST">
         <p>Anzeige der Rohdaten:</p>
         <input type="submit" value="Weiter">
     </form>
+    <p><a href="{{ url }}">Fussball.de Ligaübersicht</a></p>
     <p>Ausgabe der Daten:</p>
         {% for match in matches %}
         <p>{{ match.match_day }} 
