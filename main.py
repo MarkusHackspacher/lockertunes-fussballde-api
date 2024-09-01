@@ -39,11 +39,11 @@ def request_matches(team_name: str, league_url: str, game_span: int):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    if request.method == 'POST':  
-
+    if request.method == 'POST':
         url = request.form['url']
         return redirect(url_for('second_gui', url=url))
     return render_template('index.html')
+
 
 @app.route('/second_gui', methods=['GET', 'POST'])
 def second_gui():
@@ -55,6 +55,7 @@ def second_gui():
 
     return render_template('second_gui.html', url=url, teams=teams)
 
+
 @app.route('/third_gui', methods=['GET', 'POST'])
 def third_gui():
     url = request.args.get('url')
@@ -64,10 +65,11 @@ def third_gui():
         matches_dict = []
         for match in matches:
             matches_dict.append(match.to_dict())
-        if request.method == 'POST': 
+        if request.method == 'POST':
             return jsonify(matches_dict), 202
         return render_template('third_gui.html', matches=matches, url=url)
     return "Keine Daten ausgewählt."
+
 
 if __name__ == '__main__':
     app.run(debug=True)

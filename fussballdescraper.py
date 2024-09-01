@@ -1,7 +1,10 @@
 from bs4 import BeautifulSoup
 import requests
 from models.match import Match
-from resources.fussballde_constants import *
+from resources.fussballde_constants import TEAM_NAME_CLASS, TEAM_LOGO_CLASS, \
+                                           MATCH_PLAN_SECTION_NAME, MATCHES_SECTION_NAME, \
+                                           MATCH_PLAN_URL_PREFIX, MATCHES_URL_PREFIX, \
+                                           SECTION_DIVIDER
 
 
 """
@@ -62,10 +65,7 @@ def format_team_name(team_name) -> str:
 
 
 def format_team_logo_src(team_logo) -> str:
-    try:
-        team_logo = team_logo.find('img').attrs['src']
-    except:
-        team_logo = ""
+    team_logo = team_logo.find('img').attrs['src']
     team_logo = team_logo.replace('getLogo/format/3/id', 'getLogo/format/2/id')
     team_logo = team_logo.replace('//', '')
     return team_logo
