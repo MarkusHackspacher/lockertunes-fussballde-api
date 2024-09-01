@@ -1,6 +1,4 @@
-import unittest
-
-from main import app # Flask instance of the API
+from main import app  # Flask instance of the API
 
 
 def test_index_route():
@@ -8,6 +6,7 @@ def test_index_route():
 
     assert response.status_code == 200
     assert response.data.decode('utf-8')[:15] == '<!DOCTYPE html>'
+
 
 def test_second_route():
     response = app.test_client().get('/second_gui')
